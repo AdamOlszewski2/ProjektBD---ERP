@@ -1,5 +1,6 @@
 USE [ProjektBD]
 GO
+
 SET ANSI_NULLS ON
 GO
 

@@ -1,7 +1,6 @@
 USE [ProjektBD]
 GO
 
-/****** Object:  Table [dbo].[CONTRACTORS]    Script Date: 23.11.2019 21:42:38 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,9 +9,9 @@ GO
 
 CREATE TABLE [dbo].[CONTRACTOR](
 	[CONTRACTORID] [int] IDENTITY(1,1),
-	[NAME] [varchar](255) NULL,
+	[NAME] [varchar](255) NOT NULL,
 	[ADDRESS] [varchar](255) NULL,
-	[EMAIL] [varchar](max) NOT NULL,
+	[EMAIL] [varchar](max) NULL,
 	[NIP] [bigint] NOT NULL,
 	[BANKACCOUNT] [int] NULL,
 	CONSTRAINT [CONTRACTOR_CHK_NIP] CHECK (
