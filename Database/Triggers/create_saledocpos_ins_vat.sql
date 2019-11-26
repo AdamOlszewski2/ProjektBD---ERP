@@ -1,12 +1,12 @@
 USE [ProjektBD]
 GO
-
+/****** Object:  Trigger [dbo].[TRG_SALEDOCPOS_INS_VAT]    Script Date: 26.11.2019 14:32:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE OR ALTER TRIGGER [dbo].[TRG_SALEDOCPOS_INS_VAT]
+ALTER TRIGGER [dbo].[TRG_SALEDOCPOS_INS_VAT]
 ON [dbo].[SALEDOCUMENTPOSITION]
 INSTEAD OF INSERT
 AS
@@ -31,8 +31,8 @@ BEGIN
 		inserted.PRODUCTID,
 		inserted.VATRATEID,
 		inserted.UNITPRICE,
-		sum(inserted.NETSUM * inserted.QUANTITY),
-		sum((inserted.NETSUM * inserted.QUANTITY) * @vatamount),
+		sum(inserted.UNITPRICE * inserted.QUANTITY),
+		sum((inserted.UNITPRICE * inserted.QUANTITY) * @vatamount),
 		inserted.QUANTITY
 	from inserted
 	group by inserted.SALEDOCUMENTPOSITIONID, inserted.DOCUMENTID, inserted.PRODUCTID, inserted.VATRATEID, inserted.UNITPRICE, inserted.QUANTITY;

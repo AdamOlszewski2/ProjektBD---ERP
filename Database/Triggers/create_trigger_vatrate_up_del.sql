@@ -1,15 +1,15 @@
-Use ProjektBD
-Go
+USE [ProjektBD]
+GO
+/****** Object:  Trigger [dbo].[TRG_VATRATE_UP]    Script Date: 26.11.2019 14:54:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TRIGGER dbo.TRG_VATRATE_UP
-   ON dbo.VATRATE
+CREATE TRIGGER [dbo].[TRG_VATRATE_UP_DEL]
+   ON [dbo].[VATRATE]
    AFTER UPDATE, DELETE
 AS 
 BEGIN
 	SET NOCOUNT ON;
 	RAISERROR(1,-1,-1,'Can not modify or delete VAT rates');
 END
-GO

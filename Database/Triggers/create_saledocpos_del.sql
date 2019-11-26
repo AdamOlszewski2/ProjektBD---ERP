@@ -1,0 +1,16 @@
+USE [ProjektBD]
+GO
+/****** Object:  Trigger [dbo].[TRG_SALEDOC_UP_DEL_VAT]    Script Date: 26.11.2019 14:33:25 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TRIGGER [dbo].[TRG_SALEDOCPOS_DEL]
+ON [dbo].[SALEDOCUMENTPOSITION]
+INSTEAD OF DELETE
+AS
+BEGIN
+  SET NOCOUNT ON;
+  RAISERROR(2,-1,-1,'Can not modify or delete documents');
+END

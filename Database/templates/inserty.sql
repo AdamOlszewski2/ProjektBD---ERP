@@ -25,4 +25,6 @@ INSERT INTO [dbo].[SALEDOCUMENTPOSITION]
            ,5
            ,6);
 
-update [SALEDOCUMENTPOSITION] set quantity = 105;
+update [SALEDOCUMENTPOSITION] set quantity = 1 where [SALEDOCUMENTPOSITIONID] = 2;
+
+delete from [SALEDOCUMENTPOSITION];

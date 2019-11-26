@@ -17,24 +17,28 @@ DECLARE	@grosssum money;
 	select @grosssum = sum(saledoumentposition.NETSUM - (saledoumentposition.NETSUM * vatrate.vatrateamount) * saledoumentposition.QUANTITY) 
 	from saledoumentposition inner join vatrate on saledoumentposition.vatrateid = vatrate.vatrateid 
 	where saledoumentposition.documentid = inserted.documentid;*/
-DECLARE @vatamount int;
-select @vatamount = vatrateamount from vatrate inner join inserted on VATRATE.VATRATEID = inserted.vatrateid;
-set @vatamount = @vatamount +1;
+DECLARE @vatamount real;
+DECLARE @net money;
+DECLARE @gross money;
 BEGIN
   SET NOCOUNT ON;
+  --SET IDENTITY_INSERT [dbo].[SALEDOCUMENTPOSITION] ON;
+  select @vatamount = vatrateamount from VATRATE inner join inserted on VATRATE.VATRATEID = inserted.VATRATEID where VATRATE.VATRATEID = inserted.vatrateid;
+  set @vatamount = @vatamount + 1;
+  select @net = sum(inserted.UNITPRICE * inserted.QUANTITY) from inserted;
+  select @gross = sum((inserted.UNITPRICE * inserted.QUANTITY) * @vatamount) from inserted;
   update [dbo].[SALEDOCUMENTPOSITION]
 		set 
-		[dbo].[SALEDOCUMENTPOSITION].SALEDOCUMENTPOSITIONID = inserted.SALEDOCUMENTPOSITIONID,
 		[dbo].[SALEDOCUMENTPOSITION].DOCUMENTID = inserted.DOCUMENTID,
 		[dbo].[SALEDOCUMENTPOSITION].PRODUCTID  = inserted.PRODUCTID,
 		[dbo].[SALEDOCUMENTPOSITION].VATRATEID  = inserted.VATRATEID,
 		[dbo].[SALEDOCUMENTPOSITION].UNITPRICE  = inserted.UNITPRICE,
-		[dbo].[SALEDOCUMENTPOSITION].NETSUM  = sum(inserted.NETSUM * inserted.QUANTITY),
-		[dbo].[SALEDOCUMENTPOSITION].GROSSSUM  = sum((inserted.NETSUM * inserted.QUANTITY) * @vatamount),
+		[dbo].[SALEDOCUMENTPOSITION].NETSUM  = @net,
+		[dbo].[SALEDOCUMENTPOSITION].GROSSSUM  = @gross,
 		[dbo].[SALEDOCUMENTPOSITION].QUANTITY  = inserted.QUANTITY
-	from inserted 
-	inner join saledoumentposition on saledoument.documentid = saledoumentposition.documentid
-	inner join vatrate on saledoumentposition.vatrateid = vatrate.vatrateid
+	from inserted;
+	--group by inserted.SALEDOCUMENTPOSITIONID, inserted.DOCUMENTID, inserted.PRODUCTID, inserted.VATRATEID, inserted.UNITPRICE, inserted.QUANTITY;
+	--inner join [SALEDOCUMENTPOSITION] on inserted.DOCUMENTID = [SALEDOCUMENTPOSITION].DOCUMENTID
 END
 GO
 
