@@ -7,19 +7,20 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE or alter TRIGGER [TRG_SALEDOC_UP_VAT]
+CREATE or alter TRIGGER [TRG_SALEDOC_UP_DEL_VAT]
 ON [SALEDOCUMENT]
-INSTEAD OF UPDATE
+INSTEAD OF UPDATE, DELETE
 AS
-DECLARE @netsum money;
+/*DECLARE @netsum money;
 DECLARE	@grosssum money;
 	select @netsum = sum(saledoumentposition.NETSUM * saledoumentposition.QUANTITY) from saledoumentposition where saledoumentposition.documentid = inserted.documentid;
 	select @grosssum = sum(saledoumentposition.NETSUM - (saledoumentposition.NETSUM * vatrate.vatrateamount) * saledoumentposition.QUANTITY) 
 	from saledoumentposition inner join vatrate on saledoumentposition.vatrateid = vatrate.vatrateid 
-	where saledoumentposition.documentid = inserted.documentid;
+	where saledoumentposition.documentid = inserted.documentid;*/
 BEGIN
   SET NOCOUNT ON;
-  update [dbo].[SALEDOCUMENT]
+  RAISERROR(2,-1,-1,'Can not modify or delete documents');
+  /*update [dbo].[SALEDOCUMENT]
 		set 
 		[dbo].[SALEDOCUMENT].[DOCUMENTID] = inserted.DOCUMENTID,
 		[dbo].[SALEDOCUMENT].[DOCUMENTNUMBER] = inserted.DOCUMENTNUMBER,
@@ -32,9 +33,9 @@ BEGIN
 		[dbo].[SALEDOCUMENT].[NETSUM]  = @netsum
 	from inserted 
 	inner join saledoument on inserted.documentid = saledoument.documentid 
-	inner join saledoumentposition on saledoument.documentid = saledoumentposition.documentid
+	inner join saledoumentposition on saledoument.documentid = saledoumentposition.documentid*/
 END
 GO
 
-ALTER TABLE [dbo].[SALEDOCUMENT] ENABLE TRIGGER [TRG_SALEDOC_UP_VAT]
+ALTER TABLE [dbo].[SALEDOCUMENT] ENABLE TRIGGER [TRG_SALEDOC_UP_DEL_VAT]
 GO

@@ -18,23 +18,23 @@ DECLARE	@grosssum money;
 	from saledoumentposition inner join vatrate on saledoumentposition.vatrateid = vatrate.vatrateid 
 	where saledoumentposition.documentid = inserted.documentid;*/
 DECLARE @vatamount int;
-select @vatamount = 1 + (vatrateamount from vatrate where vatrateid = inserted.vatrate)
+select @vatamount = vatrateamount from vatrate inner join inserted on VATRATE.VATRATEID = inserted.vatrateid;
+set @vatamount = @vatamount +1;
 BEGIN
   SET NOCOUNT ON;
   update [dbo].[SALEDOCUMENTPOSITION]
 		set 
-		[dbo].[SALEDOCUMENTPOSITION].SALEDOCUMENTPOSITIONID = inserted.SALEDOCUMENTPOSITIONID
-		[dbo].[SALEDOCUMENTPOSITION].DOCUMENTID = inserted.DOCUMENTID
-		[dbo].[SALEDOCUMENTPOSITION].PRODUCTID  = inserted.PRODUCTID
-		[dbo].[SALEDOCUMENTPOSITION].VATRATEID  = inserted.VATRATEID
-		[dbo].[SALEDOCUMENTPOSITION].UNITPRICE  = inserted.UNITPRICE
-		[dbo].[SALEDOCUMENTPOSITION].NETSUM  = sum(inserted.NETSUM * inserted.QUANTITY)
-		[dbo].[SALEDOCUMENTPOSITION].GROSSSUM  = sum((inserted.NETSUM * inserted.QUANTITY) * @vatamount)
+		[dbo].[SALEDOCUMENTPOSITION].SALEDOCUMENTPOSITIONID = inserted.SALEDOCUMENTPOSITIONID,
+		[dbo].[SALEDOCUMENTPOSITION].DOCUMENTID = inserted.DOCUMENTID,
+		[dbo].[SALEDOCUMENTPOSITION].PRODUCTID  = inserted.PRODUCTID,
+		[dbo].[SALEDOCUMENTPOSITION].VATRATEID  = inserted.VATRATEID,
+		[dbo].[SALEDOCUMENTPOSITION].UNITPRICE  = inserted.UNITPRICE,
+		[dbo].[SALEDOCUMENTPOSITION].NETSUM  = sum(inserted.NETSUM * inserted.QUANTITY),
+		[dbo].[SALEDOCUMENTPOSITION].GROSSSUM  = sum((inserted.NETSUM * inserted.QUANTITY) * @vatamount),
 		[dbo].[SALEDOCUMENTPOSITION].QUANTITY  = inserted.QUANTITY
 	from inserted 
-	inner join saledoument on inserted.documentid = saledoument.documentid 
 	inner join saledoumentposition on saledoument.documentid = saledoumentposition.documentid
-	inne join vatrate on saledoumentposition.vatrateid = vatrate.vatrateid
+	inner join vatrate on saledoumentposition.vatrateid = vatrate.vatrateid
 END
 GO
 
