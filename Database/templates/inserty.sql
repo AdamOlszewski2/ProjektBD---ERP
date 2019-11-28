@@ -7,8 +7,9 @@ insert into users values ('aa','aa','aa', cast('aaa' as VARBINARY(MAX)), 1);
 insert into contractor values ('adam', 'poznan', 'aa@aa.pl', 1110523716, 1234);
 insert into product values (1234,'aaa'	,1	,2.54	,1);
 insert into saledocument values(1,1,1,GETDATE(),GETDATE(),GETDATE(), 100,150);
+insert into invoicedocument values(1,1,1,GETDATE(),GETDATE(),GETDATE(), 10,15);
 
-INSERT INTO [dbo].[SALEDOCUMENTPOSITION]
+INSERT INTO [dbo].INVOICEDOCUMENTPOSITION
            ([DOCUMENTID]
            ,[PRODUCTID]
            ,[VATRATEID]
@@ -28,3 +29,5 @@ INSERT INTO [dbo].[SALEDOCUMENTPOSITION]
 update [SALEDOCUMENTPOSITION] set quantity = 1 where [SALEDOCUMENTPOSITIONID] = 2;
 
 delete from [SALEDOCUMENTPOSITION];
+
+EXEC ALL_USERS_DOCUMENTS @FirstName = 'aa', @LastName = 'aa', @DocType = 4;
