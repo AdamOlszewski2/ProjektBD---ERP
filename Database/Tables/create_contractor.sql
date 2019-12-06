@@ -12,7 +12,7 @@ CREATE TABLE [dbo].[CONTRACTOR](
 	[NAME] [varchar](255) NOT NULL,
 	[ADDRESS] [varchar](255) NULL,
 	[EMAIL] [varchar](max) NULL,
-	[NIP] [bigint] NOT NULL,
+	[NIP] [bigint] UNIQUE NOT NULL,
 	[BANKACCOUNT] [int] NULL,
 	CONSTRAINT [CONTRACTOR_CHK_NIP] CHECK (
 		dbo.IsValidNip(NIP) = 1
