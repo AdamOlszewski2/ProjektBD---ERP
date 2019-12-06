@@ -1,0 +1,18 @@
+Use ProjektBD
+Go
+CREATE PROCEDURE ALL_USERS_DOCUMENTS @FirstName varchar(255), @LastName varchar(255), @DocType tinyint
+AS
+	IF @DocType = 0
+	BEGIN 
+	Select SALEDOCUMENT.*, USERS.FirstName, USERS.LastName from SALEDOCUMENT inner join USERS on SALEDOCUMENT.USERID = USERS.USERID; 
+	END
+	Else IF @DocType = 1
+	BEGIN
+	Select INVOICEDOCUMENT.*, USERS.FirstName, USERS.LastName from INVOICEDOCUMENT inner join USERS on INVOICEDOCUMENT.USERID = USERS.USERID; 
+	END
+	Else IF @DocType = 2 
+	BEGIN 
+	SELECT ALL_DOCUMENTS.*, USERS.FirstName, USERS.LastName from ALL_DOCUMENTS inner join USERS on ALL_DOCUMENTS.USERID = USERS.USERID; 
+	END
+	ELSE RAISERROR(10,-1,-1,'Wrong argument');
+GO
