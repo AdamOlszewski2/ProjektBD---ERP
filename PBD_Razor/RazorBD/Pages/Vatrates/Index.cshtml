@@ -1,0 +1,36 @@
+﻿@page
+@model RazorBD.IndexVatrateModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>VAT Rates</h1>
+
+<p>
+    <a asp-page="Create">Create new Vat Rate</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vatrate[0].Vatrateamount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Vatrate) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vatrateamount)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Vatrateid">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Vatrateid">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Vatrateid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

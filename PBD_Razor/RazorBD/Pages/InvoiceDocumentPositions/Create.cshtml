@@ -1,0 +1,61 @@
+﻿@page
+@model RazorBD.CreateInvoiceDocumentPositionModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Invoicedocumentposition</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Invoicedocumentposition.Documentid" class="control-label"></label>
+                <select asp-for="Invoicedocumentposition.Documentid" class ="form-control" asp-items="ViewBag.Documentid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoicedocumentposition.Productid" class="control-label"></label>
+                <select asp-for="Invoicedocumentposition.Productid" class ="form-control" asp-items="ViewBag.Productid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoicedocumentposition.Vatrateid" class="control-label"></label>
+                <select asp-for="Invoicedocumentposition.Vatrateid" class ="form-control" asp-items="ViewBag.Vatrateid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoicedocumentposition.Unitprice" class="control-label"></label>
+                <input asp-for="Invoicedocumentposition.Unitprice" class="form-control" />
+                <span asp-validation-for="Invoicedocumentposition.Unitprice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoicedocumentposition.Netsum" class="control-label"></label>
+                <input asp-for="Invoicedocumentposition.Netsum" class="form-control" />
+                <span asp-validation-for="Invoicedocumentposition.Netsum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoicedocumentposition.Grosssum" class="control-label"></label>
+                <input asp-for="Invoicedocumentposition.Grosssum" class="form-control" />
+                <span asp-validation-for="Invoicedocumentposition.Grosssum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoicedocumentposition.Quantity" class="control-label"></label>
+                <input asp-for="Invoicedocumentposition.Quantity" class="form-control" />
+                <span asp-validation-for="Invoicedocumentposition.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

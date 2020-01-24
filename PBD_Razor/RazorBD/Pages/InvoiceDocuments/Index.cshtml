@@ -1,0 +1,78 @@
+﻿@page
+@model RazorBD.IndexInvoiceDocumentModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Invoice Documents</h1>
+
+<p>
+    <a asp-page="Create">Create new Invoice Document</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocument[0].Documentnumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocument[0].Moddate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocument[0].Createdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocument[0].Invoicedate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocument[0].Grosssum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocument[0].Netsum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocument[0].Contractor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocument[0].User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Invoicedocument) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Documentnumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Moddate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Createdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Invoicedate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grosssum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Netsum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contractor.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Firstname)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Documentid">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Documentid">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Documentid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

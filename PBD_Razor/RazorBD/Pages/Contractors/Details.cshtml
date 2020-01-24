@@ -1,0 +1,49 @@
+﻿@page
+@model RazorBD.DetailsContractorModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Contractor</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contractor.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contractor.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contractor.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contractor.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contractor.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contractor.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contractor.Nip)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contractor.Nip)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contractor.Bankaccount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contractor.Bankaccount)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Contractor.Contractorid">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

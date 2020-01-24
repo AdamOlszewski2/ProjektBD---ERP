@@ -1,0 +1,72 @@
+﻿@page
+@model RazorBD.IndexInvoiceDocumentPositionModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Invoice Document Positions</h1>
+
+<p>
+    <a asp-page="Create">Create new invoice document position</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocumentposition[0].Unitprice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocumentposition[0].Netsum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocumentposition[0].Grosssum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocumentposition[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocumentposition[0].Document)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocumentposition[0].Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoicedocumentposition[0].Vatrate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Invoicedocumentposition) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unitprice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Netsum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grosssum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Document.Documentnumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vatrate.Vatrateid)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Invoicedocumentpositionid">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Invoicedocumentpositionid">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Invoicedocumentpositionid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

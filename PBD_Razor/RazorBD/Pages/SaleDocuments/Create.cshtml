@@ -1,0 +1,52 @@
+﻿@page
+@model RazorBD.CreateSaleDocumentModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Saledocument</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Saledocument.Contractorid" class="control-label"></label>
+                <select asp-for="Saledocument.Contractorid" class ="form-control" asp-items="ViewBag.Contractorid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saledocument.Userid" class="control-label"></label>
+                <select asp-for="Saledocument.Userid" class ="form-control" asp-items="ViewBag.Userid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saledocument.Invoicedate" class="control-label"></label>
+                <input asp-for="Saledocument.Invoicedate" class="form-control" />
+                <span asp-validation-for="Saledocument.Invoicedate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saledocument.Grosssum" class="control-label"></label>
+                <input asp-for="Saledocument.Grosssum" class="form-control" />
+                <span asp-validation-for="Saledocument.Grosssum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saledocument.Netsum" class="control-label"></label>
+                <input asp-for="Saledocument.Netsum" class="form-control" />
+                <span asp-validation-for="Saledocument.Netsum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,61 @@
+﻿@page
+@model RazorBD.CreateSaleDocumentPositionsModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Saledocumentposition</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Saledocumentposition.Documentid" class="control-label"></label>
+                <select asp-for="Saledocumentposition.Documentid" class ="form-control" asp-items="ViewBag.Documentid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saledocumentposition.Productid" class="control-label"></label>
+                <select asp-for="Saledocumentposition.Productid" class ="form-control" asp-items="ViewBag.Productid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saledocumentposition.Vatrateid" class="control-label"></label>
+                <select asp-for="Saledocumentposition.Vatrateid" class ="form-control" asp-items="ViewBag.Vatrateid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saledocumentposition.Unitprice" class="control-label"></label>
+                <input asp-for="Saledocumentposition.Unitprice" class="form-control" />
+                <span asp-validation-for="Saledocumentposition.Unitprice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saledocumentposition.Netsum" class="control-label"></label>
+                <input asp-for="Saledocumentposition.Netsum" class="form-control" />
+                <span asp-validation-for="Saledocumentposition.Netsum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saledocumentposition.Grosssum" class="control-label"></label>
+                <input asp-for="Saledocumentposition.Grosssum" class="form-control" />
+                <span asp-validation-for="Saledocumentposition.Grosssum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Saledocumentposition.Quantity" class="control-label"></label>
+                <input asp-for="Saledocumentposition.Quantity" class="form-control" />
+                <span asp-validation-for="Saledocumentposition.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

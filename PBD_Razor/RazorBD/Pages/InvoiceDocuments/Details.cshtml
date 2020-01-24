@@ -1,0 +1,67 @@
+﻿@page
+@model RazorBD.DetailsInvoiceDocumentModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Invoicedocument</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoicedocument.Documentnumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoicedocument.Documentnumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoicedocument.Moddate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoicedocument.Moddate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoicedocument.Createdate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoicedocument.Createdate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoicedocument.Invoicedate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoicedocument.Invoicedate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoicedocument.Grosssum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoicedocument.Grosssum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoicedocument.Netsum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoicedocument.Netsum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoicedocument.Contractor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoicedocument.Contractor.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Invoicedocument.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Invoicedocument.User.Firstname)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Invoicedocument.Documentid">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
